@@ -1,0 +1,54 @@
+name: Update Repository Metadata
+
+on:
+  # Run when pushing to main branch
+  push:
+    branches: [ main ]
+    paths:
+      - 'README.md'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      description:
+        description: 'Repository description'
+        required: false
+        default: 'Hitam Putih - Aplikasi konversi gambar ke hitam putih (grayscale) yang sederhana dan mudah digunakan.'
+      topics:
+        description: 'Repository topics (comma-separated)'
+        required: false
+        default: 'flutter,dart,image-processing,black-and-white,grayscale,android,mobile-app'
+
+jobs:
+  update-metadata:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      metadata: write
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup GitHub CLI
+        uses: cli/setup-gh@v1
+      
+      - name: Update Repository Metadata
+        env:
+          # Use a Personal Access Token with repo scope
+          GH_TOKEN: ${{ secrets.REPO_TOKEN }}
+          REPO_OWNER: gerrymoeis
+          REPO_NAME: hitam-putih
+        run: |
+          # Set description from input or default
+          DESCRIPTION="${{ github.event.inputs.description || 'Hitam Putih - Aplikasi konversi gambar ke hitam putih (grayscale) yang sederhana dan mudah digunakan.' }}"
+          echo "Setting repository description to: $DESCRIPTION"
+          gh repo edit "$REPO_OWNER/$REPO_NAME" --description "$DESCRIPTION"
+          
+          # Set topics from input or default
+          TOPICS="${{ github.event.inputs.topics || 'flutter,dart,image-processing,black-and-white,grayscale,android,mobile-app' }}"
+          echo "Setting repository topics to: $TOPICS"
+          gh repo edit "$REPO_OWNER/$REPO_NAME" --add-topic "$TOPICS"
+          
+          # Set repository website URL
+          gh repo edit "$REPO_OWNER/$REPO_NAME" --homepage "https://github.com/gerrymoeis/hitam-putih/releases/latest"
