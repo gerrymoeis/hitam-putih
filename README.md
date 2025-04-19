@@ -7,6 +7,7 @@
 ![GitHub License](https://img.shields.io/github/license/gerrymoeis/hitam-putih)
 ![Flutter Version](https://img.shields.io/badge/flutter-3.7.2-blue)
 ![Platform](https://img.shields.io/badge/platform-android%20%7C%20ios%20%7C%20web-lightgrey)
+[![Latest Release](https://img.shields.io/github/v/release/gerrymoeis/hitam-putih?include_prereleases&label=latest%20release)](https://github.com/gerrymoeis/hitam-putih/releases/latest)
 
 Aplikasi konversi gambar ke hitam putih (grayscale) yang sederhana dan mudah digunakan.
 
@@ -45,6 +46,16 @@ File APK akan tersedia di lokasi berikut:
 - Release APK: `build/app/outputs/flutter-apk/app-release.apk`
 
 ## Cara Menjalankan Aplikasi
+
+### Download Aplikasi
+
+Anda dapat mengunduh versi terbaru aplikasi Hitam Putih dari:
+
+<p align="center">
+  <a href="https://github.com/gerrymoeis/hitam-putih/releases/latest">
+    <img src="https://img.shields.io/badge/Download-Latest%20Release-blue?style=for-the-badge&logo=github" alt="Download Latest Release" />
+  </a>
+</p>
 
 ### Dari Source Code
 
